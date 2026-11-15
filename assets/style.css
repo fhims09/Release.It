@@ -1,0 +1,92 @@
+:root{--malam:#07101F;--biru:#3C7FD0;--biru-tua:#2B63A8;--cahaya:#8CC4F2;--teks:#E4EEF9;--redup:#9FB6CF;--kaca:rgba(12,27,54,.62);--garis:rgba(140,196,242,.25);--koral:#F09A9A}
+*{box-sizing:border-box}
+body{position:relative;isolation:isolate;min-height:100vh;margin:0;color:var(--teks);font:17px/1.65 'Nunito Sans',system-ui,sans-serif;background:var(--malam)}
+body::before{content:"";position:fixed;z-index:-1;inset:-5%;pointer-events:none;background-image:radial-gradient(ellipse at 18% 16%,rgba(60,127,208,.16),transparent 42%),linear-gradient(rgba(7,16,31,.55),rgba(7,16,31,.75)),url(img/bg-utama.jpg);background-position:center;background-size:cover;background-repeat:no-repeat;transform:scale(1.04);animation:latar-bernapas 36s ease-in-out infinite alternate}
+body.napas::before{background-image:radial-gradient(ellipse at 72% 20%,rgba(60,127,208,.18),transparent 45%),linear-gradient(rgba(7,16,31,.35),rgba(7,16,31,.65)),url(img/bg-napas.jpg)}
+body.admin::before{background-image:radial-gradient(ellipse at 50% 12%,rgba(60,127,208,.14),transparent 48%),linear-gradient(rgba(7,16,31,.6),rgba(7,16,31,.8)),url(img/bg-admin.jpg)}
+@keyframes latar-bernapas{from{transform:scale(1.04) translate3d(-.35%,0,0)}to{transform:scale(1.09) translate3d(.35%,-.45%,0)}}
+h1,h2,.logo{font-family:'Lora',Georgia,serif;line-height:1.25;font-weight:700}
+h1{font-size:clamp(1.8rem,5vw,2.8rem);margin:.2em 0}
+h2{font-size:1.35rem}
+a{color:var(--cahaya)}
+:focus-visible{outline:3px solid var(--cahaya);outline-offset:2px}
+main{max-width:860px;margin:0 auto;padding:1rem 1.25rem 3rem}
+.atas{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;padding:1rem 1.25rem;background:rgba(7,16,31,.55);backdrop-filter:blur(8px);border-bottom:1px solid var(--garis)}
+.logo{font-size:1.4rem;color:var(--teks);text-decoration:none;text-shadow:0 0 18px rgba(140,196,242,.6)}
+nav{display:flex;flex-wrap:wrap;gap:.35rem .25rem}
+nav a{margin-left:.6rem;padding:.35rem .5rem;border-radius:8px;text-decoration:none;color:var(--teks);transition:color .2s,background-color .2s}
+nav a:hover{color:var(--cahaya);background:rgba(140,196,242,.08)}
+.hero{padding:1.5rem 0}
+.hero p{max-width:60ch;color:var(--redup)}
+.langit{margin-top:1rem;padding:2rem 1.5rem;border-radius:16px;border:1px solid var(--garis);background:linear-gradient(135deg,rgba(7,16,31,.45),rgba(7,16,31,.68)),url(img/bg-hero.jpg) center/cover}
+.tengah{text-align:center}.tengah p{margin-inline:auto}
+textarea,input,select{width:100%;padding:.75rem .9rem;border:1px solid var(--garis);border-radius:10px;background:rgba(7,16,31,.6);color:var(--teks);font:inherit}
+textarea::placeholder,input::placeholder{color:var(--redup)}
+textarea:focus,input:focus,select:focus{border-color:var(--cahaya);box-shadow:0 0 0 3px rgba(140,196,242,.2);outline:0}
+textarea{resize:vertical}
+label{display:block;margin:1rem 0 .3rem;font-weight:600}
+.tombol{display:inline-block;margin-top:1rem;margin-right:.5rem;padding:.7rem 1.4rem;border:0;border-radius:999px;background:var(--biru);color:#fff;font:600 1rem 'Nunito Sans',sans-serif;cursor:pointer;text-decoration:none;box-shadow:0 0 20px rgba(60,127,208,.35);transition:background .2s,box-shadow .25s,transform .25s}
+.tombol:hover{background:var(--biru-tua);box-shadow:0 0 24px rgba(60,127,208,.5);transform:translateY(-1px)}
+.tombol.bahaya{background:#B94F57;box-shadow:none}
+.tombol.kecil{margin-top:0;padding:.5rem 1rem}
+.tulis{position:relative}
+#melayang{position:absolute;inset:0;pointer-events:none;overflow:visible}
+.kata{position:absolute;color:#CFE6FF;font-family:'Lora',serif;text-shadow:0 0 12px var(--cahaya);animation:terbang 3.2s ease-out forwards}
+@keyframes terbang{to{transform:translate(var(--dx),-180px) rotate(var(--r));opacity:0;filter:blur(4px)}}
+.bantuan{margin-top:1.5rem;padding:1.25rem 1.5rem;background:var(--kaca);backdrop-filter:blur(10px);border-left:6px solid var(--cahaya);border-radius:10px}
+.bantuan h2{margin-top:0}
+.mood-list{display:flex;flex-wrap:wrap;gap:.6rem;margin:.8rem 0 1.2rem}
+.chip{padding:.45rem 1.1rem;border:1.5px solid var(--cahaya);border-radius:999px;color:var(--cahaya);text-decoration:none;font-weight:600;transition:background-color .2s,color .2s,transform .2s}
+.chip.aktif,.chip:hover{background:var(--cahaya);color:var(--malam)}
+.galeri{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
+.kartu{margin:0;padding:1.2rem;background:var(--kaca);backdrop-filter:blur(10px);border:1px solid var(--garis);border-radius:14px;font-family:'Lora',serif}
+.kartu footer{margin-top:.8rem;font:.85rem 'Nunito Sans',sans-serif;color:var(--cahaya)}
+.kartu img{width:100%;border-radius:8px;display:block}
+.video{padding:0;overflow:hidden;aspect-ratio:16/9}
+.video iframe{width:100%;height:100%;border:0}
+.form{max-width:560px}
+.info{padding:.8rem 1rem;background:var(--kaca);backdrop-filter:blur(10px);border-left:6px solid var(--cahaya);border-radius:10px;margin:1rem 0}
+.info.salah{border-color:var(--koral)}
+.kode{font:700 1.3rem monospace;letter-spacing:.1em;margin-left:.4rem;color:var(--cahaya)}
+.lingkaran{width:min(280px,70vw);aspect-ratio:1;margin:2rem auto 0;border-radius:50%;background:radial-gradient(circle at 50% 45%,#BFE0FF,var(--biru) 55%,#16407A);box-shadow:0 0 70px rgba(140,196,242,.6);display:grid;place-items:center;color:var(--malam);font:700 1.4rem 'Lora',serif;transform:scale(.55);transition:transform 1s ease-in-out}
+.baris{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0}.baris input,.baris select{width:auto;flex:1 1 160px}
+.gulir{overflow-x:auto}
+table{width:100%;border-collapse:collapse;background:var(--kaca);backdrop-filter:blur(10px)}
+th,td{padding:.6rem .8rem;border-bottom:1px solid var(--garis);text-align:left;vertical-align:top}
+th{color:var(--cahaya)}
+.inline{display:inline}
+.link,.link-bahaya{background:none;border:0;padding:0 .4rem;font:inherit;cursor:pointer;text-decoration:underline;color:var(--cahaya)}
+.link-bahaya{color:var(--koral)}
+.bawah{max-width:860px;margin:0 auto;padding:1.5rem 1.25rem;font-size:.9rem;color:var(--redup);border-top:1px solid var(--garis)}
+@media (max-width:600px){body{font-size:16px}.atas{align-items:flex-start;flex-direction:column;padding:.85rem 1rem}nav{width:100%;margin-left:-.5rem}nav a{margin-left:0}main{padding:1rem 1rem 2rem}.langit{padding:1.4rem 1rem}.kirim>div:last-child{display:flex;flex-wrap:wrap;gap:.25rem}.tombol{padding:.65rem 1.1rem}.pesan{max-width:94%}.bawah{padding:1.2rem 1rem}}
+@media (prefers-reduced-motion:reduce){body::before{animation:none;transform:none}.kata{animation-duration:.01s}.lingkaran{transition:none}.tombol,.chip,nav a{transition:none}}
+
+/* Chat */
+.chat{display:flex;flex-direction:column;gap:.7rem;height:min(52vh,460px);overflow-y:auto;padding:1rem;margin:1rem 0;background:rgba(7,16,31,.55);backdrop-filter:blur(8px);border:1px solid var(--garis);border-radius:14px}
+.pesan{max-width:82%;padding:.65rem 1rem;border-radius:16px}
+.pesan p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.petunjuk-chat{margin:-.6rem 0 1rem;font-size:.92rem}
+.saran-chat{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;margin-top:.85rem;font:600 .9rem 'Nunito Sans',sans-serif}
+.saran-chat .chip{padding:.35rem .8rem;background:rgba(7,16,31,.35);cursor:pointer}
+.saran-chat .chip:hover{transform:translateY(-1px)}
+.pesan.bot{align-self:flex-start;background:var(--kaca);border:1px solid var(--garis);border-bottom-left-radius:4px}
+.pesan.saya{align-self:flex-end;background:var(--biru);border-bottom-right-radius:4px}
+.lampiran{margin-top:.6rem}.lampiran .kartu{padding:.8rem;font-size:.95rem}
+.ketik p{white-space:nowrap}
+.ketik p::after{content:'...';display:inline-block;width:1.2em;overflow:hidden;white-space:nowrap;vertical-align:bottom;animation:titik 1.2s steps(4) infinite}
+@keyframes titik{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.kirim .tulis textarea{min-height:3.2rem}
+.tombol.sekunder{background:transparent;border:1.5px solid var(--cahaya);color:var(--cahaya);box-shadow:none}
+.tombol.sekunder:hover{background:rgba(140,196,242,.15)}
+@media (prefers-reduced-motion:reduce){.ketik p::after{animation:none;width:1.2em}}
+
+.chat{scrollbar-width:thin;scrollbar-color:transparent transparent;color-scheme:dark}
+.chat:hover{scrollbar-color:rgba(140,196,242,.55) transparent}
+.chat::-webkit-scrollbar{width:8px}
+.chat::-webkit-scrollbar-track{background:transparent}
+.chat::-webkit-scrollbar-thumb{background:transparent;border:2px solid transparent;border-radius:8px;background-clip:padding-box;transition:background-color .2s}
+.chat:hover::-webkit-scrollbar-thumb{background-color:rgba(140,196,242,.55)}
+.chat:hover::-webkit-scrollbar-thumb:hover{background-color:rgba(140,196,242,.8)}
+
+/* Kolom jebakan anti-bot (tidak terlihat pengguna) */
+.jebakan{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
