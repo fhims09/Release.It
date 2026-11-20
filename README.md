@@ -93,5 +93,5 @@ erDiagram
 
 ## Pembagian tugas
 
-- **Orang A**: tampilan, `assets/style.css`, `assets/app.js`, `index.php`, `napas.php`.
-- **Orang B**: `database.sql`, `config/`, `chat.php`, `dinding.php`, `pesanku.php`, `admin/`.
+- **Faris**: tampilan, `assets/style.css`, `assets/app.js`, `index.php`, `napas.php`.
+- **Fahim**: `database.sql`, `config/`, `chat.php`, `dinding.php`, `pesanku.php`, `admin/`.
