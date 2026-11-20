@@ -97,3 +97,75 @@ INSERT INTO konten (tipe, isi, id_mood) VALUES
 ('kutipan','Mulailah dari hal yang sangat kecil hari ini: minum air, buka jendela, atau kirim pesan singkat ke seseorang.',5),
 ('kutipan','Kamu tidak harus merasakan sesuatu dengan sempurna. Hadir di hari ini saja sudah cukup.',5),
 ('kutipan','Jika rasa kosong ini terasa lama dan berat, bercerita kepada konselor atau orang tepercaya adalah langkah yang berani.',5);
+
+
+-- ==========================================================
+-- MODUL ROOM KOMUNITAS (LOGIN & ANONIM)
+-- ==========================================================
+
+CREATE TABLE IF NOT EXISTS pengguna (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50) NOT NULL UNIQUE,
+  nama VARCHAR(100) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  avatar VARCHAR(50) DEFAULT 'user',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS komunitas_topik (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nama VARCHAR(50) NOT NULL,
+  slug VARCHAR(50) NOT NULL UNIQUE,
+  deskripsi VARCHAR(255) NOT NULL,
+  urutan INT DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS komunitas_post (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_topik INT NOT NULL,
+  id_pengguna INT NULL,
+  nama_pengirim VARCHAR(100) NOT NULL,
+  is_anonim TINYINT(1) DEFAULT 0,
+  judul VARCHAR(200) NOT NULL,
+  isi TEXT NOT NULL,
+  reaksi_peluk INT DEFAULT 0,
+  reaksi_semangat INT DEFAULT 0,
+  reaksi_relate INT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_topik (id_topik),
+  INDEX idx_waktu (created_at),
+  FOREIGN KEY (id_topik) REFERENCES komunitas_topik(id) ON DELETE CASCADE,
+  FOREIGN KEY (id_pengguna) REFERENCES pengguna(id) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS komunitas_balasan (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_post INT NOT NULL,
+  id_pengguna INT NULL,
+  nama_pengirim VARCHAR(100) NOT NULL,
+  is_anonim TINYINT(1) DEFAULT 0,
+  isi TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_post (id_post),
+  INDEX idx_waktu (created_at),
+  FOREIGN KEY (id_post) REFERENCES komunitas_post(id) ON DELETE CASCADE,
+  FOREIGN KEY (id_pengguna) REFERENCES pengguna(id) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS komunitas_reaksi (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  id_post INT NOT NULL,
+  tipe VARCHAR(20) NOT NULL,
+  kunci_sesi VARCHAR(64) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY uq_reaksi (id_post, tipe, kunci_sesi),
+  FOREIGN KEY (id_post) REFERENCES komunitas_post(id) ON DELETE CASCADE
+);
+
+INSERT INTO komunitas_topik (nama, slug, deskripsi, urutan) VALUES
+('Ruang Bebas Curhat', 'bebas', 'Ceritakan apa saja yang mengganjal di hatimu hari ini.', 1),
+('Keluh Kesah Kuliah', 'kuliah', 'Tugas menumpuk, skripsi, ujian, atau dinamika dosen.', 2),
+('Hati dan Relasi', 'relasi', 'Dinamika pertemanan, keluarga, asmara, dan kesepian.', 3),
+('Overthinking dan Cemas', 'cemas', 'Pikiran yang berputar tentang masa depan dan rasa ragu.', 4),
+('Kemenangan Kecil', 'syukur', 'Hal-hal kecil yang berhasil kamu lalui hari ini.', 5)
+ON DUPLICATE KEY UPDATE nama=VALUES(nama);

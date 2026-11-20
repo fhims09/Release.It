@@ -2,12 +2,19 @@
 // Sesuaikan dengan XAMPP/Laragon kalian
 $host = 'localhost'; $db = 'releaseit'; $user = 'root'; $pass = '';
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     ]);
+    // Inisialisasi otomatis tabel komunitas jika belum ada
+    if (file_exists(__DIR__ . '/../includes/komunitas_db.php')) {
+        require_once __DIR__ . '/../includes/komunitas_db.php';
+        init_komunitas_db($pdo);
+    }
 } catch (PDOException $e) {
     die('Koneksi database gagal. Cek config/koneksi.php dan pastikan database.sql sudah diimpor.');
 }

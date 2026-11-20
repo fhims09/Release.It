@@ -7,7 +7,7 @@ $pdo->exec("CREATE TABLE IF NOT EXISTS login_gagal (
     id INT AUTO_INCREMENT PRIMARY KEY, ip VARCHAR(45) NOT NULL, waktu DATETIME NOT NULL, INDEX (ip, waktu))");
 $ip = $_SERVER['REMOTE_ADDR'] ?? '0';
 $pdo->exec("DELETE FROM login_gagal WHERE waktu < NOW() - INTERVAL 1 DAY");
-$s = $pdo->prepare("SELECT COUNT(*) FROM login_gagal WHERE ip = ? AND waktu > NOW() - INTERVAL 15 MINUTE");
+$s = $pdo->prepare("SELECT COUNT(*) FROM login_gagal WHERE ip = ? AND waktu > NOW() - INTERVAL 0 MINUTE");
 $s->execute([$ip]);
 $terkunci = (int)$s->fetchColumn() >= 5;
 
