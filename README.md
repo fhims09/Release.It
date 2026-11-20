@@ -9,6 +9,7 @@ Project Akhir Pemrograman Web. Release.It adalah ruang curhat daring untuk mahas
 - **Chatbot Rilis**: menjawab dengan AI (opsional, lewat API) dan otomatis memakai balasan berbasis kata kunci jika AI tidak aktif atau gagal.
 - **Lepaskan tulisan**: teks melayang dan hilang, tidak dikirim dan tidak disimpan.
 - **Ruang tenang**: latihan napas 4-7-8 dengan animasi.
+- **Komunitas**: ruang diskusi anonim bagi mahasiswa untuk membuat utas/cerita dan saling memberikan balasan atau dukungan.
 - **Dinding harapan**: pesan semangat anonim dengan moderasi admin, kode edit untuk mengubah atau menghapus pesan sendiri, dan pembatas kirim (anti-spam).
 - **Halaman admin**: kelola konten (kutipan, video, gambar), respons chatbot, moderasi pesan, dan ganti password.
 - **Deteksi kata berisiko**: dijalankan di server sebelum pesan diteruskan ke AI; menampilkan informasi bantuan nyata.
